@@ -15,7 +15,7 @@ const sessionConfiguration = {
     store: new KnexSessionStore({
         knex,
         createTable: true,
-        clearInterval: 1000 * 60 * 10,
+        clearInterval: 1000 * 60,
         sidfieldname: "sid",
         tablename: "sessions"
     }),
