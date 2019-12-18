@@ -14,8 +14,8 @@ async function register(req, res) {
 
 async function login(req, res) {
     try {
-        const [user] = Users.findBy({username: req.body.username});
-        if (bcrypt.compareSync(user.password, req.body.password)) {
+        const [user] = await Users.findBy({username: req.body.username});
+        if (bcrypt.compareSync(req.body.password, user.password)) {
             const {id, username, role_id} = user;
             res.json({id, username, role_id})
         } else {
