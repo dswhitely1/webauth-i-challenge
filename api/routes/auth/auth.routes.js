@@ -16,6 +16,7 @@ async function login(req, res) {
     try {
         const [user] = await Users.findBy({username: req.body.username});
         if (bcrypt.compareSync(req.body.password, user.password)) {
+            req.session.user = user;
             const {id, username, role_id} = user;
             res.json({id, username, role_id})
         } else {
